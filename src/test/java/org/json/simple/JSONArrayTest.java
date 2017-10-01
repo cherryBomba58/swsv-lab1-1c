@@ -265,6 +265,9 @@ public class JSONArrayTest extends TestCase {
 		assertEquals("null", JSONArray.toJSONString((Object[])null));
 		assertEquals("[]", JSONArray.toJSONString(new Object[0]));
 		assertEquals("[\"Hello\"]", JSONArray.toJSONString(new Object[] { "Hello" }));
+		
+		// new Integer(int) was too inefficient and it was unnecessary to call its constructor,
+		// this is why I called Integer.valueOf(int) instead: it's not a real constructor now.
 		assertEquals("[\"Hello\",12,[1,2,3]]", JSONArray.toJSONString(new Object[] { "Hello", Integer.valueOf(12), new int[] { 1, 2, 3 } }));
 		
 		StringWriter writer;
